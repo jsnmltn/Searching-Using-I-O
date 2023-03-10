@@ -14,19 +14,18 @@ public class FileSearcher {
             System.out.println("************************************");
 
             System.out.println("Enter a word I will search for instances of it in this year's 'State of the Union'");
-            System.out.println();
 
             String userWord = key.nextLine();
-            //TODO
             int count = lookForWord(userWord);
             System.out.println("The word "+userWord+" appears "+count+" times");
             key.close();
     }
 
-        public static int lookForWord(String word)
+        public static int lookForWord(String userWord)
         {
-            if(word == null)
+            if(userWord == null)
                 return 0;
+
             int ret = 0;
 
             try{
@@ -35,14 +34,14 @@ public class FileSearcher {
             while(fileScanner.hasNext())
             {
                 String next = fileScanner.next();
-                if(next.toUpperCase().contains(word.toUpperCase()));
-                    ret++;
+                if(next.toUpperCase().contains(userWord.toUpperCase()))
+                    ret ++;       
             } 
             fileScanner.close();
-                }catch(Exception e)
+            }catch(Exception e)
                 {
                     e.printStackTrace();
-                }return ret;
+                }
+            return ret;
         }
-    
 }
