@@ -5,18 +5,51 @@ import java.io.*;
 import java.util.Scanner;
 
 public class FileSearcher {
+
+public static String uChoice;
+public static String title;
     public static void main(String[] args) throws Exception {
         Scanner key = new Scanner(System.in);
 
-        System.out.println("Welcome to Word Searcher:\n"
-            + "\nI will demonstrate how easy it is to search for instances of a word\n"
-            + "\n a document and display the results!");
+        System.out.println("""
+        	Welcome to Word Searcher:
+        	
+        	I will demonstrate how easy it is to search for instances of a word
+        	
+        	 a document and display the results!""");
             System.out.println("************************************");
 
-            System.out.println("Enter a word I will search for instances of it in this year's 'State of the Union'");
+            System.out.println("Select the document for me to scan and search from the following selections below:");
+            System.out.println("""
+            	Enter '1' to search the \"2023 'State of the Uninon Adress\"".
+            	
+            	Enter '2' to search MLK JR's \"I have a Dream\"" speach.
+            	
+            	Enter '3' to search JFK's \"Ask not what your Country can do for you\" speach """);
 
+                String choice = key.next(); 
+                switch(choice){
+                case  "1":
+                    choice = "./StateOfTheUnion.txt";
+                    FileSearcher.title = "2023 State Of the Uninion Adress";
+                    break;
+                case "2":
+                    choice = "./MLK_Dream.txt";
+                    FileSearcher.title = "I Have a Dream Speech";
+                    break;
+                case "3":
+                    choice = "./JFK_MoonSpeech.txt";
+                    FileSearcher.title = "JFK Address at Rice University  \" Moon Speech\" ";
+                    break;
+                default:
+                    choice = "./StateOfTheUnion.txt";
+                } FileSearcher.uChoice = choice;
+            
+            System.out.println("Excellent choice!\n"  
+            + "\nEnter the word you would like for me to search for in the "+FileSearcher.title);
+            key.nextLine();
             String userWord = key.nextLine();
-            int count = lookForWord(userWord);
+            int count = FileSearcher.lookForWord(userWord);
             System.out.println("The word "+userWord+" appears "+count+" times");
             key.close();
     }
@@ -29,7 +62,7 @@ public class FileSearcher {
             int ret = 0;
 
             try{
-            Scanner fileScanner = new Scanner(new File("./StateOfTheUnion.txt"));
+            Scanner fileScanner = new Scanner(new File(FileSearcher.uChoice));
 
             while(fileScanner.hasNext())
             {
