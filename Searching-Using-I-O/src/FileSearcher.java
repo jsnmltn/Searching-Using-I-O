@@ -14,16 +14,16 @@ public static String title;
         System.out.println("""
         	Welcome to Word Searcher:
         	
-        	I will demonstrate how easy it is to search for instances of a word
+        	I will demonstrate how easy it is to search for instances of a word or phrase
         	
-        	 a document and display the results!""");
+        	in a document and display the results!""");
             System.out.println("************************************");
 
             System.out.println("Select the document for me to scan and search from the following selections below:");
             System.out.println("""
-            	Enter '1' to search the \"2023 'State of the Uninon Adress\"".
+            	Enter '1' to search the \"2023 State of the Uninon Adress\".
             	
-            	Enter '2' to search MLK JR's \"I have a Dream\"" speach.
+            	Enter '2' to search MLK JR's \"I have a Dream\" speach.
             	
             	Enter '3' to search JFK's \"Ask not what your Country can do for you\" speach """);
 
@@ -43,13 +43,15 @@ public static String title;
                     break;
                 default:
                     choice = "./StateOfTheUnion.txt";
+                    FileSearcher.title = "2023 State Of the Uninion Adress";
                 } FileSearcher.uChoice = choice;
             
             System.out.println("Excellent choice!\n"  
             + "\nEnter the word you would like for me to search for in the "+FileSearcher.title);
-            key.nextLine();
-            String userWord = key.nextLine();
+            System.out.println();
+            String userWord = key.next();
             int count = FileSearcher.lookForWord(userWord);
+            System.out.println();
             System.out.println("The word "+userWord+" appears "+count+" times");
             key.close();
     }
